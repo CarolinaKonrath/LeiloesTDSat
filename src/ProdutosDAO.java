@@ -1,12 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author Adm
- */
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -25,7 +17,25 @@ public class ProdutosDAO {
     public void cadastrarProduto (ProdutosDTO produto){
         
         
-        //conn = new conectaDAO().connectDB();
+        conn = new conectaDAO().connectDB();
+        
+        
+        String sql = "INSERT INTO produtos(nome, valor, status) VALUES "
+                + "(?, ?, ?)";
+        try {
+            PreparedStatement prep = this.conn.prepareStatement(sql);
+            prep.setString(1, produto.getNome());
+            prep.setInt(2, produto.getValor());
+            prep.setString(3, produto.getStatus());
+            prep.executeUpdate();
+            prep.close();
+            System.out.println("Produto inserido no cadastro!");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao inserir produto: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
         
         
     }
