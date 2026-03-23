@@ -1,5 +1,5 @@
 
-import java.util.AbstractList;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class vendasVIEW extends javax.swing.JFrame {
