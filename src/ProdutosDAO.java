@@ -65,8 +65,27 @@ public class ProdutosDAO {
         return listagem;
     }
     
+    public void venderProduto (int id) {
+        
+        conn = new conectaDAO().connectDB();
+        String sql = "UPDATE filmes SET status = ? WHERE id = ?";
+        
+        try {
+            PreparedStatement prep = this.conn.prepareStatement(sql);
+            
+            prep.setString(1, "Vendido");
+            prep.setInt(2, id);
+            prep.executeUpdate();
+            prep.close();
+            System.out.println("Status do produto atualizado");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao alterar status do produto: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     
-    
+   
         
 }
 
